@@ -1,8 +1,24 @@
+import processing.core.*; 
+import processing.data.*; 
+import processing.event.*; 
+import processing.opengl.*; 
+
+import java.util.HashMap; 
+import java.util.ArrayList; 
+import java.io.File; 
+import java.io.BufferedReader; 
+import java.io.PrintWriter; 
+import java.io.InputStream; 
+import java.io.OutputStream; 
+import java.io.IOException; 
+
+public class Chemotaxis extends PApplet {
+
 human anna = new human(350,350);
 Virus xiuting;
 Virus [] colony;
 boolean mouse;
- void setup()   
+ public void setup()   
  {     
  	size(700,700);
  	xiuting = new Virus(350,350);
@@ -12,7 +28,7 @@ boolean mouse;
  		colony[a] = new Virus(350,350);
  	}   
  }   
- void draw()   
+ public void draw()   
  {  
  	background(0); 
  	anna.show();
@@ -48,12 +64,12 @@ boolean mouse;
  		myClr2 = (int)(Math.random()*255);
  		myClr3 = (int)(Math.random()*255);
  	}  
- 	void show()
+ 	public void show()
  	{
  		fill(myClr1,myClr2,myClr3, 50);
  		ellipse(myX, myY, 20,20);
  	} 
-    void activate()
+    public void activate()
  	{
  		myX = myX + (int)(Math.random()*3) - 1;
  		myY = myY + (int)(Math.random()*3) - 1;
@@ -74,7 +90,7 @@ boolean mouse;
 	 		myY = myY + (int)(Math.random()*5) - 3;
 	 	}
  	}  
- 	void wipeout()
+ 	public void wipeout()
  	{
  		myX = (int)(Math.random()*700);
  		myY = (int)(Math.random()*700);
@@ -88,7 +104,7 @@ class human
 		itsX = x;
 		itsY = y;
 	}
-	void show()
+	public void show()
 	{
 		fill(255);
 		stroke(255);
@@ -99,7 +115,7 @@ class human
 		line(itsX-20,itsY+70,itsX,itsY+50);
 		line(itsX,itsY+50,itsX+20,itsY+70);
 	}
-	void birth()
+	public void birth()
 	{
 		
 		itsX = mouseX;
@@ -108,3 +124,12 @@ class human
 	}
 }
 
+  static public void main(String[] passedArgs) {
+    String[] appletArgs = new String[] { "Chemotaxis" };
+    if (passedArgs != null) {
+      PApplet.main(concat(appletArgs, passedArgs));
+    } else {
+      PApplet.main(appletArgs);
+    }
+  }
+}
